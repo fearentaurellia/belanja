@@ -8,15 +8,16 @@ void main() {
   runApp(const MyApp());
 }
 
-final List<Item> items = [
-  const Item(
+// Data
+final List<Item> items = const [
+  Item(
     name: "Salt",
     price: 5000,
     image: "images/salt.jpg",
     stock: 25,
     rating: 4.2,
   ),
-  const Item(
+  Item(
     name: "Sugar",
     price: 12000,
     image: "images/sugar.jpg",
@@ -25,6 +26,7 @@ final List<Item> items = [
   ),
 ];
 
+// GoRouter
 final GoRouter _router = GoRouter(
   routes: [
     GoRoute(

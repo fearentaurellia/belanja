@@ -27,7 +27,7 @@ class ItemCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 🔥 HERO IMAGE
+            // HERO IMAGE
             Hero(
               tag: item.name,
               child: ClipRRect(

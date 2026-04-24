@@ -1,30 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../models/item.dart';
 import '../widgets/item_card.dart';
 import '../widgets/footer.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final List<Item> items;
+  const HomePage({super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {
-    final List<Item> items = const [
-      Item(
-        name: "Salt",
-        price: 5000,
-        image: "images/salt.jpg",
-        stock: 25,
-        rating: 4.2,
-      ),
-      Item(
-        name: "Sugar",
-        price: 12000,
-        image: "images/sugar.jpg",
-        stock: 40,
-        rating: 4.6,
-      ),
-    ];
-
     return Scaffold(
       appBar: AppBar(title: const Text("Mini Marketplace")),
       body: Column(
@@ -41,7 +26,11 @@ class HomePage extends StatelessWidget {
                 childAspectRatio: 0.75,
               ),
               itemBuilder: (context, index) {
-                return ItemCard(item: items[index]);
+                final item = items[index];
+                return GestureDetector(
+                  onTap: () => context.push('/detail', extra: item),
+                  child: ItemCard(item: item), // sudah berisi Hero
+                );
               },
             ),
           ),
