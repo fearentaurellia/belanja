@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../models/item.dart';
 
 class ItemPage extends StatelessWidget {
-  const ItemPage({super.key});
+  final Item item;
+
+  const ItemPage({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
-    final item = ModalRoute.of(context)!.settings.arguments as Item;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(item.name),
@@ -17,6 +17,17 @@ class ItemPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // HERO IMAGE
+            Hero(
+              tag: item.name,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image.asset(item.image),
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
             Text(
               item.name,
               style: const TextStyle(
@@ -24,11 +35,21 @@ class ItemPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 10),
+
+            const SizedBox(height: 8),
+
             Text(
-              "Harga: Rp ${item.price}",
-              style: const TextStyle(fontSize: 18),
+              "Rp ${item.price}",
+              style: const TextStyle(
+                fontSize: 18,
+                color: Colors.green,
+              ),
             ),
+
+            const SizedBox(height: 8),
+            Text("Rating: ⭐ ${item.rating}"),
+            const SizedBox(height: 8),
+            Text("Stok: ${item.stock}"),
           ],
         ),
       ),
